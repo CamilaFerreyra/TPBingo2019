@@ -29,9 +29,9 @@ class VerificacionesAvanzadasCartonTest extends TestCase {
         if($celda!=0){
           $cantNumeros += 1;    
         }
-        $this->assertEquals(5,$cantNumeros);
-        $cantNumeros = 0;
       }
+      $this->assertEquals(5,$cantNumeros);
+      $cantNumeros = 0;
     }
   }
 
