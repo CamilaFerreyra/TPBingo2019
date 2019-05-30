@@ -3,7 +3,7 @@
 namespace Bingo;
 
 /**
- * Este es un Carton de generado con
+ * Este es un Carton generado con:
  * https://github.com/vicmagv/bingo-card-generator/blob/master/generar_carton.js
  */
 class CartonJs implements CartonInterface {
