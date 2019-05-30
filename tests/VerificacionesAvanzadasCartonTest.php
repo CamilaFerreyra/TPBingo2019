@@ -13,7 +13,7 @@ class VerificacionesAvanzadasCartonTest extends TestCase {
     $carton = new CartonEjemplo;
     foreach ($carton->filas() as $fila) {
       foreach (celdas_ocupadas($fila) as $celda) {
-        $this->assertTrue(1< $celda && $celda <90);
+        $this->assertTrue(1 < $celda && $celda < 90);
       }
     }
   }
@@ -26,11 +26,11 @@ class VerificacionesAvanzadasCartonTest extends TestCase {
     $cantNumeros = 0;
     foreach($carton->filas() as $fila){
       foreach($fila as $celda){
-        if($celda!=0){
+        if($celda != 0){
           $cantNumeros += 1;    
         }
       }
-      $this->assertEquals(5,$cantNumeros);
+      $this->assertEquals(5, $cantNumeros);
       $cantNumeros = 0;
     }
   }
@@ -39,14 +39,32 @@ class VerificacionesAvanzadasCartonTest extends TestCase {
    * Verifica que para cada columna, haya al menos una celda ocupada.
    */
   public function testColumnaNoVacia() {
-    $this->assertTrue(TRUE);
+    $carton = new CartonEjemplo;
+    $cantNumeros = 0;
+    foreach($carton->columnas() as $columna){
+      foreach($columna as $celda){
+        if($celda != 0)
+          $cantNumeros ++; 
+      }
+      $this->assertNotEquals(0, $cantNumeros);
+      $cantNumeros = 0; 
+    }
   }
 
   /**
    * Verifica que no haya columnas de un carton con tres celdas ocupadas.
    */
   public function testColumnaCompleta() {
-    $this->assertTrue(TRUE);
+    $carton = new CartonEjemplo;
+    $cantNumeros = 0;
+    foreach($carton->columnas() as $columna){
+      foreach($columna as $celda){
+        if($celda != 0)
+          $cantNumeros ++; 
+      }
+      $this->assertNotEquals(3, $cantNumeros);
+      $cantNumeros = 0; 
+    }
   }
 
   /**
