@@ -27,7 +27,7 @@ class VerificacionesAvanzadasCartonTest extends TestCase {
     foreach($carton->filas() as $fila){
       foreach($fila as $celda){
         if($celda!=0){
-          $cantNumeros ++;    
+          $cantNumeros += 1;    
         }
         $this->assertEquals(5,$cantNumeros);
         $cantNumeros = 0;
