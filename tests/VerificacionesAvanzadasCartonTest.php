@@ -22,7 +22,17 @@ class VerificacionesAvanzadasCartonTest extends TestCase {
    * Verifica que cada fila de un carton tenga exactamente 5 celdas ocupadas.
    */
   public function testCincoNumerosPorFila() {
-    $this->assertTrue(TRUE);
+    $carton = new CartonEjemplo;
+    $cantNumeros = 0;
+    foreach($carton->filas() as $fila){
+      foreach($fila as $celda){
+        if($celda!=0){
+          $cantNumeros ++;    
+        }
+        $this->assertEquals(5,$cantNumeros);
+        $cantNumeros = 0;
+      }
+    }
   }
 
   /**
