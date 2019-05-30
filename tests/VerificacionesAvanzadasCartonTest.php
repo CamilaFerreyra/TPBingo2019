@@ -84,7 +84,7 @@ class VerificacionesAvanzadasCartonTest extends TestCase {
         $celdasIndividuales ++;
       $cantNumeros = 0; 
     }
-    $this->assertNotEquals(3, $celdasIndividuales);
+    $this->assertEquals(3, $celdasIndividuales);
   }
 
   /**
