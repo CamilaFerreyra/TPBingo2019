@@ -72,7 +72,19 @@ class VerificacionesAvanzadasCartonTest extends TestCase {
    * ocupada.
    */
   public function testTresCeldasIndividuales() {
-    $this->assertTrue(TRUE);
+    $carton = new CartonEjemplo;
+    $cantNumeros = 0;
+    $celdasIndividuales = 0;
+    foreach($carton->columnas() as $columna){
+      foreach($columna as $celda){
+        if($celda != 0)
+          $cantNumeros ++; 
+      }
+      if($cantNumeros == 1)
+        $celdasIndividuales ++;
+      $cantNumeros = 0; 
+    }
+    $this->assertNotEquals(3, $celdasIndividuales);
   }
 
   /**
