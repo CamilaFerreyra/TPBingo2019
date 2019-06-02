@@ -92,14 +92,34 @@ class VerificacionesAvanzadasCartonTest extends TestCase {
    * las columnas a la derecha.
    */
   public function testNumerosIncrementales() {
-    $this->assertTrue(TRUE);
+    $carton = new CartonEjemplo;
+    $min_columna = 0;
+    $max_columna = 10;
+    foreach($carton->columnas() as $columna){
+      foreach(celdas_ocupadas($columna) as $celda){
+        $this->assertTrue($min_columna < $celda && $celda < $max_columna);
+      }
+
+      $min_columna += 10;
+      $max_columna += 10;
+    }
   }
 
   /**
    * Verifica que en una fila no existan más de dos celdas vacias consecutivas.
    */
   public function testFilasConVaciosUniformes() {
-    $this->assertTrue(TRUE);
+    $carton = new CartonEjemplo;
+    foreach($carton->filas() as $fila){
+      $anterior = 1;
+      $anterior_anterior = 1;
+      foreach($fila as $celda){
+        $this->assertFalse($anterior == $anterior_anterior && $anterior == $celda && $anterior == 0);
+
+        $anterior_anterior = $anterior;
+        $anterior = $celda;
+      }
+    }
   }
 
 }
