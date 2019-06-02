@@ -10,10 +10,10 @@ class VerificacionesAvanzadasCartonTest extends TestCase {
    * Verifica que los números del carton se encuentren en el rango 1 a 90.
    */
   public function testUnoANoventa() {
-    $carton = new CartonJS;
+    $carton = new CartonJs;
     foreach ($carton->filas() as $fila) {
       foreach (celdas_ocupadas($fila) as $celda) {
-        $this->assertTrue(1 < $celda && $celda < 90);
+        $this->assertTrue(1 <= $celda && $celda <= 90);
       }
     }
   }
@@ -22,7 +22,7 @@ class VerificacionesAvanzadasCartonTest extends TestCase {
    * Verifica que cada fila de un carton tenga exactamente 5 celdas ocupadas.
    */
   public function testCincoNumerosPorFila() {
-    $carton = new CartonJS;
+    $carton = new CartonJs;
     $cantNumeros = 0;
     foreach($carton->filas() as $fila){
       foreach($fila as $celda){
@@ -39,7 +39,7 @@ class VerificacionesAvanzadasCartonTest extends TestCase {
    * Verifica que para cada columna, haya al menos una celda ocupada.
    */
   public function testColumnaNoVacia() {
-    $carton = new CartonJS;
+    $carton = new CartonJs;
     $cantNumeros = 0;
     foreach($carton->columnas() as $columna){
       foreach($columna as $celda){
@@ -55,7 +55,7 @@ class VerificacionesAvanzadasCartonTest extends TestCase {
    * Verifica que no haya columnas de un carton con tres celdas ocupadas.
    */
   public function testColumnaCompleta() {
-    $carton = new CartonJS;
+    $carton = new CartonJs;
     $cantNumeros = 0;
     foreach($carton->columnas() as $columna){
       foreach($columna as $celda){
@@ -72,7 +72,7 @@ class VerificacionesAvanzadasCartonTest extends TestCase {
    * ocupada.
    */
   public function testTresCeldasIndividuales() {
-    $carton = new CartonJS;
+    $carton = new CartonJs;
     $cantNumeros = 0;
     $celdasIndividuales = 0;
     foreach($carton->columnas() as $columna){
@@ -92,12 +92,12 @@ class VerificacionesAvanzadasCartonTest extends TestCase {
    * las columnas a la derecha.
    */
   public function testNumerosIncrementales() {
-    $carton = new CartonJS;
+    $carton = new CartonJs;
     $min_columna = 0;
     $max_columna = 10;
     foreach($carton->columnas() as $columna){
       foreach(celdas_ocupadas($columna) as $celda){
-        $this->assertTrue($min_columna < $celda && $celda < $max_columna);
+        $this->assertTrue($min_columna < $celda && $celda <= $max_columna);
       }
 
       $min_columna += 10;
@@ -109,7 +109,7 @@ class VerificacionesAvanzadasCartonTest extends TestCase {
    * Verifica que en una fila no existan más de dos celdas vacias consecutivas.
    */
   public function testFilasConVaciosUniformes() {
-    $carton = new CartonJS;
+    $carton = new CartonJs;
     foreach($carton->filas() as $fila){
       $anterior = 1;
       $anterior_anterior = 1;
