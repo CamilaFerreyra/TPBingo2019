@@ -4,23 +4,23 @@ En cuanto a limitaciones no puede ignorar archivos ya trackeados por git. El arc
 tampoco puede ignorarse a si mismo.
 
 El archivo '.travis.yml' es el archivo necesario para realizar la integracion del repositorio
-de github con travis. Travis, por su parte, realiza un Integracion Continua del repositorio
+de github con travis. Travis, por su parte, realiza una Integracion Continua del repositorio
 corriendo los tests especificados en el archivo para analizar el estado del proyecto que depende
 de que Travis pase o no todos los tests especificados. De esta forma Travis ofrece, a traves de su
-pagina o con un gadge del archivo README actualizaciones del estado del repositorio luego de cada
-commit: funcional o fallando.
+pagina o con una badge en el archivo README, actualizaciones del estado del repositorio luego de cada
+commit: testeando, funcional o fallando.
 
 Las lineas una a una del archivo '.travis.yml' son:
 
-* language: php. Indica el lenguaje usado en el proyecto
+* language: php. // Indica el lenguaje usado en el proyecto
 * php:
-    - 7.2. Indica la version de php utilizada
+    - 7.2. // Indica la version de php utilizada
 * install:
-    - composer update --prefer-source. Indica el script a correr para configurar el entorno de testeo
+    - composer update --prefer-source. // Indica el script a correr para configurar el entorno de testeo
 *script:
-    - php vendor/bin/phpunit --color tests. Indica el script a correr para testear el proyecto
+    - php vendor/bin/phpunit --color tests. // Indica el script a correr para testear el proyecto
 
-El archivo 'composer.json' es el archivo utilizado por la aplicacion Composer que es un 
+El archivo 'composer.json' es el archivo utilizado por la aplicacion Composer, que es un 
 administrador de paquetes para el lenguaje PHP y que se utiliza para administrar las
 dependencias de aplicaciones programadas en PHP. 
 La diferencia de este archivo con 'composer.lock' es que este se genera y modifica de manera 
@@ -44,7 +44,7 @@ que faltan definiciones para los nombres que incluia el namespace y por lo tanto
 funcional.
 
 El comentario '{@inheritdoc}' marca la herencia de documentacion cuando un metodo de una clase es sobrescrito.
-Esto puede suceder devido a la implementacion de una interface o cuando se realiza una extension de otra
+Esto puede suceder debido a la implementacion de una interface o cuando se realiza una extension de otra
 clase. En ambos casos la funcion ya existe en el elemento extendido o implementado y posee una documentacion
 que es heredada por la nueva implementacion y adjuntada mediante este tag. 
 
