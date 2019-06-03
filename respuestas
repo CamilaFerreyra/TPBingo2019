@@ -1,3 +1,8 @@
+El archivo .gitignore especifica que archivos debe ignorar git al hacer un commit. Es decir el 
+commit se realiza como si esos archivos no existieran.
+En cuanto a limitaciones no puede ignorar archivos ya trackeados por git. El archivo .gitignore 
+tampoco puede ignorarse a si mismo.
+
 El archivo '.travis.yml' es el archivo necesario para realizar la integracion del repositorio
 de github con travis. Travis, por su parte, realiza un Integracion Continua del repositorio
 corriendo los tests especificados en el archivo para analizar el estado del proyecto que depende
