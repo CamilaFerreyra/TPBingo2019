@@ -93,6 +93,7 @@ class VerificacionesAvanzadasCartonTest extends TestCase {
    */
   public function testNumerosIncrementales() {
     $carton = new CartonJs;
+    # min (array_filter($lista)) //min de lista sin cero.
     $min_columna = 0;
     $max_columna = 10;
     foreach($carton->columnas() as $columna){
