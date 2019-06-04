@@ -97,7 +97,7 @@ class VerificacionesAvanzadasCartonTest extends TestCase {
     $max_columna = 10;
     foreach($carton->columnas() as $columna){
       foreach(celdas_ocupadas($columna) as $celda){
-        $this->assertTrue($min_columna < $celda && $celda <= $max_columna);
+        $this->assertTrue($min_columna <= $celda && $celda < $max_columna);
       }
 
       $min_columna += 10;
