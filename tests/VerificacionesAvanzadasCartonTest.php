@@ -99,8 +99,14 @@ class VerificacionesAvanzadasCartonTest extends TestCase {
     $mayores[];
     $menores[];
     foreach ($carton->columnas() as $columna){
-      $mayores[$indice] = max (array_filter($columna));
-      $menores[$indice] = min (array_filter($columna));
+      $mayores[$indice] = 1;
+      $menores[$indice] = 90;
+      foreach (celdas_ocupadas($columna) as $celda){
+        if ($mayores[$indice] < $celda)
+          $mayores[$indice] = $celda;
+        if ($menores[$indice] > $celda)
+          $menores[$indice] = $celda;
+      }
       $indice ++;
     }
     for ($indice = 0; $indice < 8; $indice ++){
