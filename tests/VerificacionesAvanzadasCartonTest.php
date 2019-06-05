@@ -90,21 +90,24 @@ class VerificacionesAvanzadasCartonTest extends TestCase {
   /**
    * Verifica que los números de las columnas izquierdas son menores que los de
    * las columnas a la derecha.
+   * min (array_filter($lista)) //min de lista sin cero.
    */
+   
   public function testNumerosIncrementales() {
     $carton = new CartonJs;
-    # min (array_filter($lista)) //min de lista sin cero.
-    $min_columna = 0;
-    $max_columna = 10;
-    foreach($carton->columnas() as $columna){
-      foreach(celdas_ocupadas($columna) as $celda){
-        $this->assertTrue($min_columna <= $celda && $celda < $max_columna);
-      }
-
-      $min_columna += 10;
-      $max_columna += 10;
+    $indice = 0;
+    $mayores[];
+    $menores[];
+    foreach ($carton->columnas() as $columna){
+      $mayores[$indice] = max (array_filter($columna));
+      $menores[$indice] = min (array_filter($columna));
+      $indice ++;
+    }
+    for ($indice = 0; $indice < 8; $indice ++){
+      $this->assertTrue($mayores[$indice] < $menores[$indice + 1]);
     }
   }
+
 
   /**
    * Verifica que en una fila no existan más de dos celdas vacias consecutivas.
