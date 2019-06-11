@@ -6,6 +6,7 @@ class FabricaCartones {
     // fallo: deberia hacer un bucle hasta devolver algo valido.
     for($i=0; $i<10; $i++){
       $carton = $this->intentoCarton();
+      $carton = Carton($carton).columnas();
       if ($this->cartonEsValido($carton)) {
         return $carton;
       }
