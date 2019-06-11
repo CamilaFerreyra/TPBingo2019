@@ -25,7 +25,7 @@ class FabricaCartones {
     return False;
   }
   protected function validarUnoANoventa($carton) {
-    foreach ($carton->filas() as $fila) {
+    foreach ($carton as $fila) {
       foreach (celdas_ocupadas($fila) as $celda) {
         $this->assertTrue(1 <= $celda && $celda <= 90);
       }
@@ -33,7 +33,7 @@ class FabricaCartones {
   }
   protected function validarCincoNumerosPorFila($carton) {
     $cantNumeros = 0;
-    foreach($carton->filas() as $fila){
+    foreach($carton as $fila){
       foreach($fila as $celda){
         if($celda != 0){
           $cantNumeros += 1;    
@@ -45,7 +45,7 @@ class FabricaCartones {
   }
   protected function validarColumnaNoVacia($carton) {
     $cantNumeros = 0;
-    foreach($carton->columnas() as $columna){
+    foreach($carton as $columna){
       foreach($columna as $celda){
         if($celda != 0)
           $cantNumeros ++; 
@@ -56,7 +56,7 @@ class FabricaCartones {
   }
   protected function validarColumnaCompleta($carton) {
     $cantNumeros = 0;
-    foreach($carton->columnas() as $columna){
+    foreach($carton as $columna){
       foreach($columna as $celda){
         if($celda != 0)
           $cantNumeros ++; 
@@ -68,7 +68,7 @@ class FabricaCartones {
   protected function validarTresCeldasIndividuales($carton) {
     $cantNumeros = 0;
     $celdasIndividuales = 0;
-    foreach($carton->columnas() as $columna){
+    foreach($carton as $columna){
       foreach($columna as $celda){
         if($celda != 0)
           $cantNumeros ++; 
@@ -82,7 +82,7 @@ class FabricaCartones {
   protected function validarNumerosIncrementales($carton) {
     $min_columna = 0;
     $max_columna = 10;
-    foreach($carton->columnas() as $columna){
+    foreach($carton as $columna){
       foreach(celdas_ocupadas($columna) as $celda){
         $this->assertTrue($min_columna <= $celda && $celda < $max_columna);
       }
@@ -92,7 +92,7 @@ class FabricaCartones {
     }
   }
   protected function validarFilasConVaciosUniformes($carton) {
-    foreach($carton->filas() as $fila){
+    foreach($carton as $fila){
       $anterior = 1;
       $anterior_anterior = 1;
       foreach($fila as $celda){
