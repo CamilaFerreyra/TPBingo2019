@@ -40,16 +40,4 @@ class VerificacionesBasicasCartonTest extends TestCase {
       }
     }
   }
-
-
-  /**
-   * Verifica que el metodo tieneNumero funcione correctamente.
-   */
-  public function testTieneNumero() {
-    $carton = new CartonEjemplo;
-    $this->assertTrue($carton->tieneNumero(55));
-    $this->assertFalse($carton->tieneNumero(1));
-  }
-
-
 }
