@@ -23,7 +23,7 @@ class VerificacionesBasicasCartonTest extends TestCase {
    * Verifica que cada carton tenga 15 números.
    */
   public function testQuinceNumerosPorCarton() {
-    $carton = new Carton((new FabricaCarton)->generarCarton());
+    $carton = new Carton((new FabricaCartones)->generarCarton());
     $this->assertCount(15, $carton->numerosDelCarton());
   }
 
@@ -31,7 +31,7 @@ class VerificacionesBasicasCartonTest extends TestCase {
    * Verifica que no haya números repetidos en el carton.
    */
   public function testNumerosNoRepetidos() {
-    $carton = new Carton((new FabricaCarton)->generarCarton());
+    $carton = new Carton((new FabricaCartones)->generarCarton());
     $numeros_analizados = [];
     foreach ($carton->filas() as $fila) {
       foreach (celdas_ocupadas($fila) as $celda) {
