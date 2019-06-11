@@ -95,22 +95,16 @@ class VerificacionesAvanzadasCartonTest extends TestCase {
    
   public function testNumerosIncrementales() {
     $carton = new CartonJs;
-    $indice = 0;
-    $mayores[];
-    $menores[];
-    foreach ($carton->columnas() as $columna){
-      $mayores[$indice] = 1;
-      $menores[$indice] = 90;
-      foreach (celdas_ocupadas($columna) as $celda){
-        if ($mayores[$indice] < $celda)
-          $mayores[$indice] = $celda;
-        if ($menores[$indice] > $celda)
-          $menores[$indice] = $celda;
+    # min (array_filter($lista)) //min de lista sin cero.
+    $min_columna = 0;
+    $max_columna = 10;
+    foreach($carton->columnas() as $columna){
+      foreach(celdas_ocupadas($columna) as $celda){
+        $this->assertTrue($min_columna <= $celda && $celda < $max_columna);
       }
-      $indice ++;
-    }
-    for ($indice = 0; $indice < 8; $indice ++){
-      $this->assertTrue($mayores[$indice] < $menores[$indice + 1]);
+
+      $min_columna += 10;
+      $max_columna += 10;
     }
   }
 
