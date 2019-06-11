@@ -3,7 +3,7 @@
 namespace Bingo;
 
 class Carton implements CartonInterface {
-	public function __construct($carton){
+	public function __construct(array $carton){
 		$this->numeros_carton = $carton;	
 	}
 
