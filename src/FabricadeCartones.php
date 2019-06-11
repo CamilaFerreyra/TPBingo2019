@@ -20,9 +20,9 @@ class FabricaCartones {
       validarNumerosIncrementales($carton) &&
       validarFilasConVaciosUniformes($carton)
     ) {
-      return TRUE;
+      return True;
     }
-    return FALSE;
+    return False;
   }
   protected function validarUnoANoventa($carton) {
     foreach ($carton->filas() as $fila) {
@@ -80,7 +80,6 @@ class FabricaCartones {
     $this->assertEquals(3, $celdasIndividuales);
   }
   protected function validarNumerosIncrementales($carton) {
-    # min (array_filter($lista)) //min de lista sin cero.
     $min_columna = 0;
     $max_columna = 10;
     foreach($carton->columnas() as $columna){

@@ -1,6 +1,8 @@
 <?php
 
-namespace Bingo;
+#namespace Bingo;
+
+#[new Carton ((new FabricaCarton)-> generarCarton())];
 
 class Carton implements CartonInterface {
 	public function __construct(array $carton){
