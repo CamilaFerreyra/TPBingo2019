@@ -27,9 +27,11 @@ class FabricaCartones {
   protected function validarUnoANoventa($carton) {
     foreach ($carton as $fila) {
       foreach (celdas_ocupadas($fila) as $celda) {
-        $this->assertTrue(1 <= $celda && $celda <= 90);
+        if(!(1 <= $celda && $celda <= 90))
+          return False;
       }
     }
+    return True;
   }
   protected function validarCincoNumerosPorFila($carton) {
     $cantNumeros = 0;
@@ -39,9 +41,11 @@ class FabricaCartones {
           $cantNumeros += 1;    
         }
       }
-      $this->assertEquals(5, $cantNumeros);
+      if(5 != $cantNumeros)
+        return False;
       $cantNumeros = 0;
     }
+    return True;
   }
   protected function validarColumnaNoVacia($carton) {
     $cantNumeros = 0;
@@ -50,9 +54,11 @@ class FabricaCartones {
         if($celda != 0)
           $cantNumeros ++; 
       }
-      $this->assertNotEquals(0, $cantNumeros);
+      if (0 == $cantNumeros)
+        return False;
       $cantNumeros = 0; 
     }
+    return True;
   }
   protected function validarColumnaCompleta($carton) {
     $cantNumeros = 0;
@@ -61,9 +67,11 @@ class FabricaCartones {
         if($celda != 0)
           $cantNumeros ++; 
       }
-      $this->assertNotEquals(3, $cantNumeros);
+      if(3 == $cantNumeros)
+        return False;
       $cantNumeros = 0; 
     }
+    return True;
   }
   protected function validarTresCeldasIndividuales($carton) {
     $cantNumeros = 0;
@@ -77,31 +85,35 @@ class FabricaCartones {
         $celdasIndividuales ++;
       $cantNumeros = 0; 
     }
-    $this->assertEquals(3, $celdasIndividuales);
+    return (3 == $celdasIndividuales);
   }
   protected function validarNumerosIncrementales($carton) {
     $min_columna = 0;
     $max_columna = 10;
     foreach($carton as $columna){
       foreach(celdas_ocupadas($columna) as $celda){
-        $this->assertTrue($min_columna <= $celda && $celda < $max_columna);
+        if(!($min_columna <= $celda && $celda < $max_columna))
+          return False;
       }
 
       $min_columna += 10;
       $max_columna += 10;
     }
+    return True;
   }
   protected function validarFilasConVaciosUniformes($carton) {
     foreach($carton as $fila){
       $anterior = 1;
       $anterior_anterior = 1;
       foreach($fila as $celda){
-        $this->assertFalse($anterior == $anterior_anterior && $anterior == $celda && $anterior == 0);
+        if(!($anterior == $anterior_anterior && $anterior == $celda && $anterior == 0))
+          return False;
 
         $anterior_anterior = $anterior;
         $anterior = $celda;
       }
     }
+    return True;
   }
   public function intentoCarton() {
     $contador = 0;
