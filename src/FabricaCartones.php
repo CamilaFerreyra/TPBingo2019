@@ -1,12 +1,30 @@
 <?php
 namespace Bingo;
+
+/**
+ * Esta funcion solo transpone arrays bidimensionales
+ */
+function transpose(array $arr){
+  $retorno = [];
+  foreach($arr as $fila){
+    $col = 0;
+    foreach($fila as $celda){
+      if(sizeof($retorno) < sizeof($fila))
+        $retorno[] = [];
+      
+      $retorno[$col][] = $celda;
+      $col += 1;
+    }
+  }
+  return $retorno;
+}
+
 class FabricaCartones {
   public function generarCarton() {
     // Algo de pseudo-código para ayudar con la evaluacion.
     // fallo: deberia hacer un bucle hasta devolver algo valido.
     for($i=0; $i<10; $i++){
-      $carton = $this->intentoCarton();
-      $carton = (new Carton($carton))->columnas();
+      $carton = transpose($this->intentoCarton());
       if ($this->cartonEsValido($carton)) {
         return $carton;
       }
@@ -51,7 +69,7 @@ class FabricaCartones {
   }
   protected function validarColumnaNoVacia($carton) {
     $cantNumeros = 0;
-    foreach($carton as $columna){
+    foreach(transpose($carton) as $columna){
       foreach($columna as $celda){
         if($celda != 0)
           $cantNumeros ++; 
@@ -64,7 +82,7 @@ class FabricaCartones {
   }
   protected function validarColumnaCompleta($carton) {
     $cantNumeros = 0;
-    foreach($carton as $columna){
+    foreach(transpose($carton) as $columna){
       foreach($columna as $celda){
         if($celda != 0)
           $cantNumeros ++; 
@@ -78,7 +96,7 @@ class FabricaCartones {
   protected function validarTresCeldasIndividuales($carton) {
     $cantNumeros = 0;
     $celdasIndividuales = 0;
-    foreach($carton as $columna){
+    foreach(transpose($carton) as $columna){
       foreach($columna as $celda){
         if($celda != 0)
           $cantNumeros ++; 
@@ -92,7 +110,7 @@ class FabricaCartones {
   protected function validarNumerosIncrementales($carton) {
     $min_columna = 0;
     $max_columna = 10;
-    foreach($carton as $columna){
+    foreach(transpose($carton) as $columna){
       foreach(celdas_ocupadas($columna) as $celda){
         if(!($min_columna <= $celda && $celda < $max_columna))
           return False;
@@ -108,7 +126,8 @@ class FabricaCartones {
       $anterior = 1;
       $anterior_anterior = 1;
       foreach($fila as $celda){
-        if(!($anterior == $anterior_anterior && $anterior == $celda && $anterior == 0))
+        // anterior_anterior == anterior == celda == 0
+        if($anterior_anterior == $anterior && $anterior == $celda && $celda == 0)
           return False;
 
         $anterior_anterior = $anterior;
